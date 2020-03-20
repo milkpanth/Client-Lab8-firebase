@@ -11,6 +11,9 @@ function App() {
         id:2, name: "write node"
      }
    ])
+   const [ name,setName ] = useState([
+
+  ])
   useEffect( () => {
     retriveData()
   })
@@ -27,17 +30,23 @@ function App() {
   }
   const renderTask = () => {
     if (tasks && tasks.length)
-       return tasks.map((task,index)=>{
-           return(
-             <li key={index}> {task.id} : {task.name}</li>
-           )
-         })
-     else
+      return tasks.map((task,index)=>{
+          return(
+            <li key={index}> {task.id} : {task.name}</li>
+          )
+        })
+    else
          return (<li>No task</li>)
+   }
+   const addTask = () => {
+    let id = tasks[tasks.length-1].id+1
+    firestore.collection("tasks").doc(id+'').set({id,name})
   }
   return (
     <div >
       <h1>Todo</h1>
+      <input type="text" name="name" onChange={ (e)=> setName(e.target.value)}></input>
+         <button onClick={addTask}>Submit</button>
          <ul>{ renderTask() }</ul>
     </div>
   );
