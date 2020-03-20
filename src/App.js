@@ -21,6 +21,9 @@ function App() {
       setTasks(myTask)
     } )
   }
+  const editTask = (id) => {
+    firestore.collection("tasks").doc(id+'').set({id,name})
+  }
   const deleteTask = (id) => {
     firestore.collection("tasks").doc(id+'').delete()
   }
@@ -31,6 +34,7 @@ function App() {
             <li key={index}> 
              {task.id} : {task.name}
              <button onClick={() => deleteTask(task.id)}>Delete</button>
+             <button onClick={() => editTask(task.id)}>Edit</button>
              </li>
           )
         })
