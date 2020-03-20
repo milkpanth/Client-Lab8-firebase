@@ -4,12 +4,11 @@ import './App.css';
 import {firestore} from './index'
 function App() {
   const [tasks,setTasks] = useState([])
-   const [ name,setName ] = useState([
-
-  ])
-  useEffect( () => {
+   const [ name,setName ] = useState([])
+   useEffect( () => {
     retriveData()
-  })
+  },[])
+
   const retriveData = () => {
     firestore.collection("tasks").onSnapshot( (snapshot) => {
       console.log(snapshot.docs)
