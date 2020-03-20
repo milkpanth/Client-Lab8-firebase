@@ -49,7 +49,7 @@ function App() {
       <h1>Todo</h1>
       <input type="text" name="name" onChange={ (e)=> setName(e.target.value)}></input>
          <button onClick={addTask}>Submit</button>
-         <ul>{ renderTask() }</ul>
+         <ul style={{display:'flex', listStyle:'none'}}>{ renderTask() }</ul>
     </div>
   );
 }
